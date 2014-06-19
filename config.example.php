@@ -3,14 +3,14 @@
  /*
   * Path of PHPCAS librairy
   *
-  * You have to specified the path of CAS.php file.
+  * You need to specify the path of the CAS.php file.
   * 
-  * On Debian (since wheezy), install php-cas package and specify
+  * On Debian (from Wheezy upwards), install php-cas package and specify
   * /usr/share/php/CAS.php
   */
 define('PHPCAS_PATH','/usr/share/php/CAS.php');
 
-// Loading PHP CAS librairy
+// Loading PHP CAS library
 require_once PHPCAS_PATH;
 
 /*
