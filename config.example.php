@@ -5,7 +5,7 @@
   *
   * You need to specify the path of the CAS.php file.
   * 
-  * On Debian (from Wheezy upwards), install php-cas package and specify
+  * On Debian (from Wheezy upwards) or Ubuntu, install php-cas package and specify
   * /usr/share/php/CAS.php
   */
 define('PHPCAS_PATH','/usr/share/php/CAS.php');
