@@ -19,6 +19,15 @@ read [the documentation](https://wiki.jasig.org/display/casc/phpcas) here.
 INSTALL
 =======
 
+  * make sure that phpCAS is existing
+  * copy the qa-external-cas folder in you app root (i.e. "question2answer")
+  * consult the qa-config.php and set external user to true: ` define('QA_EXTERNAL_USERS', true);`
+  * use a symlink to point to the external user plugin of your choice: `ln -s qa-external-cas qa-external`
+  * add your configuration
+    * copy qa-external-cas/config.example.php to qa-external-cas/config.php: `cp qa-external-cas/config.example.php qa-external-cas/config.php`
+    * configure it.
+
+  
 Configuration
 -------------
 
@@ -32,6 +41,12 @@ This is based on qa-external-casldap and enhanced with custom field names for th
   * **$CAS_USERS_ROLE** : PHP array listing specific user role. Users's role must be define using Q2A constant : _QA_USER_LEVEL_BASIC, QA_USER_LEVEL_EDITOR, QA_USER_LEVEL_ADMIN, QA_USER_LEVEL_SUPER_ (ex : _array('user1' => QA_USER_LEVEL_SUPER,'user2' => QA_USER_LEVEL_EDITOR)_)
   * **CAS_DEFAULT_USER_ROLE** : User default role define using Q2A constant (see _$CAS_USERS_ROLE_)
 
+Additional configuration:
+
+  * **CAS_SERVICE_LOGIN** : relative, absolute path or FQDN url to you Cas login service
+  * **CAS_SERVICE_LOGOUT** : relative, absolute path or FQDN url to you Cas logout service
+  * **CAS_ATTRIBUTE_MAIL** : defines the name of the mail attribute retrieved by CAS. See your CAS server configuration and the example.config for more info. Defaults to "mail"
+  * **CAS_ATTRIBUTE_FULLNAME** : defines the name of the "full name" attribute retrieved by CAS. Defaults to "cn"
 
 
 Question2Answer
