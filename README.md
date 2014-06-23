@@ -1,5 +1,6 @@
+
 qa-external-cas
-###############
+===============
 
 A custom single sign-on with CAS for Question2Answer.
 Unlike [qa-external-casldap]: https://github.com/brenard/qa-external-casldap this external authentication plugin **does not use ldap**, but instead stores created and updated user data directly in the Q2A database.
@@ -17,7 +18,7 @@ read [the documentation](https://wiki.jasig.org/display/casc/phpcas) here.
 
 
 INSTALL
-=======
+-------
 
   * make sure that phpCAS is existing
   * copy the qa-external-cas folder in you app root (i.e. "question2answer")
@@ -53,11 +54,10 @@ Question2Answer
 ===============
 
 
-[qa-external-casldap]: https://github.com/brenard/qa-external-casldap
-[Question2Answer]: http://www.question2answer.org/
-[CONTRIBUTING]: https://github.com/q2a/question2answer/blob/master/CONTRIBUTING.md
-=======
-A custom single sign-on via CAS for Question2Answer.
+[qa-external-casldap](https://github.com/brenard/qa-external-casldap)
+[Question2Answer](http://www.question2answer.org/)
+[CONTRIBUTING](https://github.com/q2a/question2answer/blob/master/CONTRIBUTING.md)
+
 
 
 
