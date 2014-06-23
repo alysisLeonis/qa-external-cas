@@ -99,13 +99,13 @@
 					else {
 						$user_level = CAS_DEFAULT_USER_ROLE;
 					}
-					$newid = qa_db_user_create($attributes['email'], 'randompw',$attributes['publicusername'], $user_level, '127.0.0.1');
+					$newid = qa_db_user_create($attributes['email'], randomPassword() ,$attributes['publicusername'], $user_level, '127.0.0.1');
 					update_attributes($newid);
 
 					return get_user_data($cas_uid);
 
 				} else {
-					error_log('eingeloggt, qa und cas out of order -_* ');
+					error_log('logged in with cas, but Q2A und CAS are out of sync (o_O) ');
 					return null;
 				}
 			} else {
@@ -144,8 +144,8 @@
 		$cas_info = array();
 
 		$cas_info['publicusername'] = $cas_uid;
-		$cas_info['email'] = $cas_attributes['mail'];
-		$cas_info['displayname'] = $cas_attributes['cn'];		
+		$cas_info['email'] = $cas_attributes[CAS_ATTRIBUTE_MAIL];
+		$cas_info['displayname'] = $cas_attributes[CAS_ATTRIBUTE_FULLNAME];		
 		return $cas_info;
 	}
 
@@ -167,6 +167,17 @@
 		return $result;
 	}
 
+	function randomPassword() {
+	    $alphabet = "abcdefghijklmnopqrstuwxyzABCDEFGHIJKLMNOPQRSTUWXYZ0123456789";
+	    $pass = array(); //remember to declare $pass as an array
+	    $alphaLength = strlen($alphabet) - 1; //put the length -1 in cache
+	    for ($i = 0; $i < 8; $i++) {
+	        $n = rand(0, $alphaLength);
+	        $pass[] = $alphabet[$n];
+	    }
+	    return implode($pass); //turn the array into a string
+	}
+
 	function qa_get_mysql_user_column_type()
 	{	
 		return 'VARCHAR(32)';	
@@ -177,7 +188,7 @@
 	{
 
 		return array(
-			'login' => '../cas/login',
+			'login' => CAS_SERVICE_LOGIN,
 			'register' => '../',
 			'logout' => $relative_url_prefix.'qa-external-cas/logout.php',
 		);

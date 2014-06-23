@@ -3,14 +3,14 @@
  /*
   * Path of PHPCAS librairy
   *
-  * You have to specified the path of CAS.php file.
+  * You need to specify the path of the CAS.php file.
   * 
-  * On Debian (since wheezy), install php-cas package and specify
+  * On Debian (from Wheezy upwards) or Ubuntu, install php-cas package and specify
   * /usr/share/php/CAS.php
   */
 define('PHPCAS_PATH','/usr/share/php/CAS.php');
 
-// Loading PHP CAS librairy
+// Loading PHP CAS library
 require_once PHPCAS_PATH;
 
 /*
@@ -44,30 +44,30 @@ $CAS_USERS_ROLE=array(
 // CAS default user role
 define('CAS_DEFAULT_USER_ROLE',QA_USER_LEVEL_BASIC);
 
+
+//define CAS login/logout paths
+
+define('CAS_SERVICE_LOGIN', '/cas/login');
+define('CAS_SERVICE_LOGOUT', '/cas/logout');
+
+
 /*
- * LDAP Configuration
+ * CAS field mapping
+ * 
+ * If there is the need of using fullnames and email addresses retrieved by CAS, you should override the settings to match you CAS server.
+ * For example, when using rubyCas there might be a config.yml like this to support extra_attributes to be sent.
+
+ authenticator:
+  class: CASServer::Authenticators::LDAP
+  ldap:
+    host: example.org
+    ...
+  extra_attributes: cn, mail, givenName, sn, dn
+
  */
+  // users email address
+  define('CAS_ATTRIBUTE_MAIL', 'mail');
 
-// LDAP server hostname (or IP address)
-define('LDAP_SERVER','ldap.exemple.com');
+  // users full name
+  define('CAS_ATTRIBUTE_FULLNAME', 'cn');
 
-// LDAP basedn to search user
-define('LDAP_USER_BASEDN','dc=example,dc=com');
-
-// LDAP filter to search user (compose with %%user%% pattern replace by userid)
-define('LDAP_USER_FILTER','(&(objectClass=posixAccount)(|(uid=%%user%%)(mail=%%user%%)))');
-
-// LDAP filter to search user by publicname (compose with %%user%% pattern replace by publicname)
-define('LDAP_USER_FILTER_BY_PUBLIC_NAME','(&(objectClass=posixAccount)(|(cn=%%user%%)(displayname=%%user%%)))');
-
-// LDAP login attribute
-define('LDAP_USERID_ATTR','uid');
-
-// LDAP mail attribute
-define('LDAP_MAIL_ATTR','mail');
-
-// LDAP mail alternative attribute
-define('LDAP_ALTERNATE_MAIL_ATTR','supannMailPerso');
-
-// LDAP public name attribute
-define('LDAP_PUBLIC_NAME_ATTR','cn');
